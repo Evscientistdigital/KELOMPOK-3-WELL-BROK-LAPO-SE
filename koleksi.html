@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Koleksi | Fire Detective</title>
+
+<link rel="stylesheet"
+      href="css/style.css">
+
+</head>
+
+
+<body>
+
+<header class="game-header">
+
+    <a href="index.html"
+       class="brand">
+
+        🌲 FIRE <span>DETECTIVE</span>
+
+    </a>
+
+
+    <div></div>
+
+
+    <a href="index.html"
+       class="nav-link">
+
+        ← Beranda
+
+    </a>
+
+</header>
+
+
+<main class="page">
+
+    <section class="result-hero">
+
+        <div class="badge-big">
+            🏆
+        </div>
+
+        <div>
+
+            <div class="section-kicker">
+                HASIL PETUALANGAN
+            </div>
+
+            <h1>
+                Fire Detective
+            </h1>
+
+            <p id="resultText">
+                Periksa koleksi faktor yang
+                berhasil kamu temukan.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="stats">
+
+        <div>
+
+            <strong id="finalScore">
+                0
+            </strong>
+
+            <span>
+                Skor
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <strong id="foundCount">
+                0
+            </strong>
+
+            <span>
+                Faktor ditemukan
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <strong id="levelDone">
+                0/4
+            </strong>
+
+            <span>
+                Level selesai
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <h2 class="collection-title">
+        📚 Koleksi Faktor
+    </h2>
+
+
+    <div id="collection"
+         class="collection-grid">
+    </div>
+
+
+    <button class="btn secondary center"
+            onclick="resetGame()">
+
+        Mulai dari Awal
+
+    </button>
+
+</main>
+
+
+<script src="js/data.js"></script>
+
+<script>
+
+const state =
+    JSON.parse(
+        localStorage.getItem("fireDetective")
+    ) || {
+        score: 0,
+        found: [],
+        levels: []
+    };
+
+
+document.getElementById("finalScore")
+    .textContent = state.score || 0;
+
+
+document.getElementById("foundCount")
+    .textContent =
+    (state.found || []).length;
+
+
+document.getElementById("levelDone")
+    .textContent =
+    `${(state.levels || []).length}/4`;
+
+
+if (
+    (state.levels || []).length === 4
+) {
+
+    document.getElementById("resultText")
+        .textContent =
+        "Hebat! Kamu berhasil menyelesaikan seluruh misi Fire Detective.";
+
+}
+
+
+document.getElementById("collection").innerHTML =
+
+factors.map(factor => {
+
+    const found =
+        (state.found || [])
+        .includes(factor.id);
+
+
+    return `
+
+        <article class="collection-card
+            ${found ? "found" : "locked"}">
+
+            <div class="collection-icon">
+
+                ${found ? factor.icon : "❔"}
+
+            </div>
+
+
+            <h3>
+
+                ${found
+                    ? factor.name
+                    : "Belum ditemukan"}
+
+            </h3>
+
+
+            <p>
+
+                ${found
+                    ? factor.description
+                    : "Mainkan level untuk membuka kartu ini."}
+
+            </p>
+
+        </article>
+
+    `;
+
+}).join("");
+
+
+function resetGame(){
+
+    localStorage.removeItem(
+        "fireDetective"
+    );
+
+    location.href =
+        "index.html";
+
+}
+
+</script>
+
+</body>
+</html>
