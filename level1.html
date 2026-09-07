@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Level 1 | Cari Faktor</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<header class="game-header">
+
+    <a href="index.html" class="brand">
+        🌲 FIRE <span>DETECTIVE</span>
+    </a>
+
+    <div class="level-title">
+        LEVEL 1 · CARI FAKTOR
+    </div>
+
+    <div class="score">
+        ⭐ <span id="score">0</span>
+    </div>
+
+</header>
+
+
+<main class="game-page">
+
+    <div class="level-intro">
+
+        <span class="level-badge">
+            🔎 MISI DETEKTIF
+        </span>
+
+        <h1>
+            Mana yang berhubungan dengan kebakaran?
+        </h1>
+
+        <p>
+
+            Klik kartu yang menurutmu berkaitan
+            dengan muncul atau menyebarnya kebakaran.
+
+        </p>
+
+    </div>
+
+
+    <div id="cards" class="factor-grid"></div>
+
+
+    <div id="feedback" class="feedback"></div>
+
+
+    <div class="bottom-action">
+
+        <a id="next"
+           href="level2.html"
+           class="btn primary hidden">
+
+            Lanjut Level 2 →
+
+        </a>
+
+    </div>
+
+</main>
+
+
+<script src="js/data.js"></script>
+
+<script src="js/game.js"></script>
+
+<script>
+
+initLevel1();
+
+</script>
+
+</body>
+</html>
