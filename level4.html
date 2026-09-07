@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Level 4 | Selamatkan Hutan</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<header class="game-header">
+
+    <a href="index.html" class="brand">
+        🌲 FIRE <span>DETECTIVE</span>
+    </a>
+
+    <div class="level-title">
+        LEVEL 4 · SELAMATKAN HUTAN
+    </div>
+
+    <div class="score">
+        ⭐ <span id="score">0</span>
+    </div>
+
+</header>
+
+
+<main class="game-page">
+
+    <div class="level-intro">
+
+        <span class="level-badge">
+            🛡️ MISI TERAKHIR
+        </span>
+
+        <h1>
+            Pilih tindakan yang tepat!
+        </h1>
+
+        <p>
+
+            Hutan sedang berada pada kondisi kering.
+            Pilih tindakan yang dapat membantu mencegah
+            kebakaran.
+
+        </p>
+
+    </div>
+
+
+    <div class="condition-row">
+
+        <span>☀️ Suhu tinggi</span>
+
+        <span>💧 Kelembapan rendah</span>
+
+        <span>💨 Angin kencang</span>
+
+        <span>🌿 Vegetasi kering</span>
+
+    </div>
+
+
+    <div id="actions"
+         class="action-grid">
+    </div>
+
+
+    <div id="actionFeedback"
+         class="feedback">
+    </div>
+
+
+    <a id="finish"
+       href="koleksi.html"
+       class="btn primary center hidden">
+
+        Lihat Hasil & Koleksi 🏆
+
+    </a>
+
+</main>
+
+
+<script src="js/data.js"></script>
+
+<script src="js/game.js"></script>
+
+<script>
+
+initLevel4();
+
+</script>
+
+</body>
+</html>
