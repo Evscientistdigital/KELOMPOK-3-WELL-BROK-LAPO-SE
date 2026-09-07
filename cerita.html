@@ -10,300 +10,3183 @@
 
     <title>Prolog | Fire Detective</title>
 
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+
+        body {
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            color: #173f35;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #dff7f1 0%,
+                    #bfe9dc 45%,
+                    #7fc3a3 100%
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .story-header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 72px;
+
+            z-index: 100;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 42px;
+
+            background:
+                rgba(255,255,255,.72);
+
+            border-bottom:
+                1px solid rgba(255,255,255,.75);
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+        }
+
+
+        /* BRAND */
+
+        .story-brand {
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            color: #174e3d;
+
+            font-size: 17px;
+            font-weight: 900;
+
+            letter-spacing: .5px;
+        }
+
+
+        .brand-icon {
+            font-size: 25px;
+        }
+
+
+        .story-brand b {
+            color: #168aad;
+        }
+
+
+
+        /* KOLEKSI */
+
+        .story-collection {
+
+            display: flex;
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 10px 15px;
+
+            border-radius: 12px;
+
+            color: #38675b;
+
+            background:
+                rgba(255,255,255,.78);
+
+            border:
+                1px solid #d7ebe4;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            transition:
+                transform .2s ease,
+                background .2s ease,
+                box-shadow .2s ease;
+        }
+
+
+        .story-collection:hover {
+
+            transform:
+                translateY(-2px);
+
+            background: #fff;
+
+            box-shadow:
+                0 8px 22px rgba(39,88,72,.12);
+        }
+
+
+
+        /* =====================================================
+           PROGRESS
+        ===================================================== */
+
+        .story-progress {
+
+            position: absolute;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .progress-label {
+
+            color: #6f8f86;
+
+            font-size: 9px;
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+        }
+
+
+        .progress-dots {
+
+            display: flex;
+
+            gap: 5px;
+        }
+
+
+        .progress-dots span {
+
+            width: 24px;
+            height: 5px;
+
+            border-radius: 99px;
+
+            background: #c9ddd7;
+
+            transition: .3s ease;
+        }
+
+
+        .progress-dots span.active {
+
+            width: 42px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #168aad,
+                    #52b788
+                );
+        }
+
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .story-main {
+
+            position: relative;
+
+            min-height: 100vh;
+
+            padding-top: 72px;
+
+            overflow: hidden;
+        }
+
+
+
+        /* =====================================================
+           BACKGROUND FOREST
+        ===================================================== */
+
+        .story-background {
+
+            position: absolute;
+
+            inset: 72px 0 0;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #e1f8f3 0%,
+                    #c5eee2 42%,
+                    #91d0b7 72%,
+                    #5ba47f 100%
+                );
+        }
+
+
+        /* SUN */
+
+        .story-sun {
+
+            position: absolute;
+
+            top: 9%;
+            right: 12%;
+
+            width: 95px;
+            height: 95px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #fffbd2 0%,
+                    #ffe99b 50%,
+                    #ffd166 100%
+                );
+
+            box-shadow:
+                0 0 65px rgba(255,209,102,.45);
+
+            animation:
+                sunFloat 5s ease-in-out infinite;
+        }
+
+
+
+        /* CLOUD */
+
+        .story-cloud {
+
+            position: absolute;
+
+            color:
+                rgba(255,255,255,.8);
+
+            font-size: 55px;
+
+            user-select: none;
+        }
+
+
+        .cloud-a {
+
+            top: 12%;
+            left: 8%;
+
+            animation:
+                cloudMove 15s ease-in-out infinite;
+        }
+
+
+        .cloud-b {
+
+            top: 22%;
+            left: 40%;
+
+            font-size: 37px;
+
+            opacity: .55;
+
+            animation:
+                cloudMove 19s ease-in-out infinite reverse;
+        }
+
+
+
+        /* =====================================================
+           MOUNTAIN
+        ===================================================== */
+
+        .story-mountain {
+
+            position: absolute;
+
+            left: -5%;
+            right: -5%;
+
+            bottom: 22%;
+
+            height: 35%;
+
+            clip-path:
+                polygon(
+                    0 100%,
+                    18% 48%,
+                    30% 66%,
+                    46% 20%,
+                    62% 58%,
+                    75% 34%,
+                    100% 72%,
+                    100% 100%
+                );
+        }
+
+
+        .mountain-back {
+
+            background: #81bfa4;
+
+            opacity: .58;
+
+            transform:
+                scale(1.1);
+        }
+
+
+        .mountain-front {
+
+            bottom: 16%;
+
+            background: #5da181;
+
+            opacity: .78;
+
+            transform:
+                scale(1.08);
+        }
+
+
+
+        /* =====================================================
+           GROUND
+        ===================================================== */
+
+        .forest-ground {
+
+            position: absolute;
+
+            left: -5%;
+            right: -5%;
+            bottom: -5%;
+
+            height: 34%;
+
+            border-radius:
+                50% 50% 0 0 /
+                12% 12% 0 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #5ba17b,
+                    #39795f
+                );
+        }
+
+
+
+        /* =====================================================
+           TREES
+        ===================================================== */
+
+        .forest-tree {
+
+            position: absolute;
+
+            z-index: 3;
+
+            font-size: 80px;
+
+            user-select: none;
+
+            filter:
+                drop-shadow(
+                    0 12px 8px
+                    rgba(24,73,53,.15)
+                );
+
+            transform-origin:
+                bottom center;
+
+            animation:
+                treeSway 4s ease-in-out infinite;
+        }
+
+
+        .tree-a {
+
+            left: 1%;
+            bottom: 19%;
+
+            font-size: 115px;
+        }
+
+
+        .tree-b {
+
+            left: 15%;
+            bottom: 24%;
+
+            font-size: 82px;
+
+            animation-delay: -.8s;
+        }
+
+
+        .tree-c {
+
+            right: 3%;
+            bottom: 18%;
+
+            font-size: 120px;
+
+            animation-delay: -1.4s;
+        }
+
+
+        .tree-d {
+
+            right: 18%;
+            bottom: 26%;
+
+            font-size: 76px;
+
+            animation-delay: -2s;
+        }
+
+
+        .tree-e {
+
+            left: 31%;
+            bottom: 21%;
+
+            font-size: 65px;
+
+            opacity: .8;
+        }
+
+
+        .tree-f {
+
+            right: 31%;
+            bottom: 21%;
+
+            font-size: 60px;
+
+            opacity: .75;
+        }
+
+
+
+        /* =====================================================
+           SMOKE
+        ===================================================== */
+
+        .smoke {
+
+            position: absolute;
+
+            z-index: 6;
+
+            width: 27px;
+            height: 27px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(80,80,80,.2);
+
+            filter:
+                blur(3px);
+
+            animation:
+                smokeRise 4s ease-in infinite;
+        }
+
+
+        .smoke-one {
+
+            right: 27%;
+            bottom: 30%;
+        }
+
+
+        .smoke-two {
+
+            right: 25%;
+            bottom: 33%;
+
+            width: 20px;
+            height: 20px;
+
+            animation-delay: 1s;
+        }
+
+
+        .smoke-three {
+
+            right: 29%;
+            bottom: 34%;
+
+            width: 15px;
+            height: 15px;
+
+            animation-delay: 2s;
+        }
+
+
+
+        /* =====================================================
+           FIRE
+        ===================================================== */
+
+        .distant-fire {
+
+            position: absolute;
+
+            z-index: 5;
+
+            right: 26%;
+            bottom: 20%;
+
+            font-size: 40px;
+
+            filter:
+                drop-shadow(
+                    0 0 16px
+                    rgba(255,128,0,.6)
+                );
+
+            animation:
+                firePulse .8s ease-in-out infinite alternate;
+        }
+
+
+
+        /* =====================================================
+           VIGNETTE
+        ===================================================== */
+
+        .story-vignette {
+
+            position: absolute;
+
+            z-index: 8;
+
+            inset: 72px 0 0;
+
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    transparent 42%,
+                    rgba(19,59,48,.13) 100%
+                );
+        }
+
+
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .story-content {
+
+            position: relative;
+
+            z-index: 20;
+
+            width:
+                min(1120px, calc(100% - 70px));
+
+            min-height:
+                calc(100vh - 72px);
+
+            margin:
+                0 auto;
+
+            padding:
+                48px 0 42px;
+        }
+
+
+
+        /* =====================================================
+           LABEL
+        ===================================================== */
+
+        .story-label {
+
+            display: inline-flex;
+            align-items: center;
+
+            gap: 9px;
+
+            padding:
+                8px 13px;
+
+            border-radius: 99px;
+
+            background:
+                rgba(255,255,255,.72);
+
+            border:
+                1px solid
+                rgba(255,255,255,.9);
+
+            color: #327263;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+
+            box-shadow:
+                0 5px 15px
+                rgba(34,86,67,.08);
+
+            animation:
+                fadeUp .6s ease both;
+        }
+
+
+        .label-dot {
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #fb8500;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(251,133,0,.12);
+
+            animation:
+                dotPulse 1.4s infinite;
+        }
+
+
+
+        /* =====================================================
+           TITLE
+        ===================================================== */
+
+        .story-content h1 {
+
+            max-width: 690px;
+
+            margin:
+                17px 0 8px;
+
+            color: #173f35;
+
+            font-size:
+                clamp(35px, 4vw, 57px);
+
+            line-height: 1.04;
+
+            letter-spacing: -2.2px;
+
+            font-weight: 950;
+
+            animation:
+                fadeUp .7s ease .1s both;
+        }
+
+
+        .story-content h1 span {
+
+            display: block;
+
+            color: #168aad;
+        }
+
+
+
+        /* =====================================================
+           SUBTITLE
+        ===================================================== */
+
+        .story-subtitle {
+
+            max-width: 570px;
+
+            color: #416c60;
+
+            font-size: 14px;
+
+            line-height: 1.65;
+
+            animation:
+                fadeUp .7s ease .2s both;
+        }
+
+
+
+        /* =====================================================
+           JAZILA AREA
+        ===================================================== */
+
+        .jazila-scene {
+
+            display: flex;
+            align-items: flex-end;
+
+            gap: 28px;
+
+            margin-top: 22px;
+
+            animation:
+                fadeUp .7s ease .25s both;
+        }
+
+
+        .jazila-wrapper {
+
+            position: relative;
+
+            width: 190px;
+            height: 225px;
+
+            flex-shrink: 0;
+        }
+
+
+
+        /* =====================================================
+           JAZILA CHARACTER
+        ===================================================== */
+
+        .character-glow {
+
+            position: absolute;
+
+            left: 50%;
+            bottom: 15px;
+
+            width: 160px;
+            height: 160px;
+
+            transform:
+                translateX(-50%);
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,255,255,.65),
+                    transparent 70%
+                );
+        }
+
+
+        .jazila-character {
+
+            position: absolute;
+
+            left: 50%;
+            bottom: 18px;
+
+            width: 125px;
+            height: 210px;
+
+            transform:
+                translateX(-50%);
+
+            animation:
+                characterFloat 3s ease-in-out infinite;
+        }
+
+
+        /* shadow */
+
+        .character-shadow {
+
+            position: absolute;
+
+            left: 50%;
+            bottom: -4px;
+
+            width: 112px;
+            height: 19px;
+
+            transform:
+                translateX(-50%);
+
+            border-radius: 50%;
+
+            background:
+                rgba(24,72,54,.22);
+
+            filter:
+                blur(4px);
+        }
+
+
+
+        /* BACKPACK */
+
+        .backpack {
+
+            position: absolute;
+
+            left: -14px;
+            top: 72px;
+
+            z-index: 1;
+
+            font-size: 46px;
+
+            transform:
+                rotate(-8deg);
+        }
+
+
+
+        /* HAIR BACK */
+
+        .hair-back {
+
+            position: absolute;
+
+            left: 20px;
+            top: 6px;
+
+            width: 83px;
+            height: 89px;
+
+            border-radius:
+                47% 47% 43% 43%;
+
+            background:
+                #3c2521;
+
+            z-index: 1;
+        }
+
+
+
+        /* HEAD */
+
+        .jazila-head {
+
+            position: absolute;
+
+            left: 25px;
+            top: 12px;
+
+            width: 72px;
+            height: 78px;
+
+            z-index: 4;
+        }
+
+
+        .face {
+
+            position: absolute;
+
+            inset: 0;
+
+            border-radius:
+                48% 48% 45% 45%;
+
+            background:
+                #f6c7a6;
+
+            box-shadow:
+                inset -4px -3px 0
+                rgba(198,123,88,.12);
+        }
+
+
+
+        /* EARS */
+
+        .ear {
+
+            position: absolute;
+
+            top: 32px;
+
+            width: 12px;
+            height: 18px;
+
+            border-radius: 50%;
+
+            background:
+                #efb995;
+        }
+
+
+        .ear-left {
+            left: -6px;
+        }
+
+
+        .ear-right {
+            right: -6px;
+        }
+
+
+
+        /* EYES */
+
+        .eye {
+
+            position: absolute;
+
+            top: 34px;
+
+            width: 8px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            background:
+                #25332f;
+        }
+
+
+        .eye-left {
+            left: 19px;
+        }
+
+
+        .eye-right {
+            right: 19px;
+        }
+
+
+
+        /* EYEBROWS */
+
+        .eyebrow {
+
+            position: absolute;
+
+            top: 27px;
+
+            width: 12px;
+            height: 3px;
+
+            border-radius: 10px;
+
+            background:
+                #55352c;
+        }
+
+
+        .eyebrow-left {
+
+            left: 17px;
+
+            transform:
+                rotate(-5deg);
+        }
+
+
+        .eyebrow-right {
+
+            right: 17px;
+
+            transform:
+                rotate(5deg);
+        }
+
+
+
+        /* NOSE */
+
+        .nose {
+
+            position: absolute;
+
+            left: 50%;
+            top: 44px;
+
+            width: 4px;
+            height: 6px;
+
+            transform:
+                translateX(-50%);
+
+            border-radius: 50%;
+
+            background:
+                #d99879;
+        }
+
+
+
+        /* SMILE */
+
+        .smile {
+
+            position: absolute;
+
+            left: 50%;
+            top: 55px;
+
+            width: 18px;
+            height: 9px;
+
+            transform:
+                translateX(-50%);
+
+            border-bottom:
+                3px solid #9d4f53;
+
+            border-radius:
+                0 0 50% 50%;
+        }
+
+
+
+        /* FRONT HAIR */
+
+        .hair-front {
+
+            position: absolute;
+
+            left: 2px;
+            top: -3px;
+
+            width: 70px;
+            height: 35px;
+
+            background:
+                #3c2521;
+
+            border-radius:
+                55% 60% 35% 20%;
+
+            z-index: 5;
+
+            clip-path:
+                polygon(
+                    0 0,
+                    100% 0,
+                    90% 50%,
+                    74% 38%,
+                    60% 78%,
+                    45% 40%,
+                    28% 72%,
+                    15% 42%,
+                    0 58%
+                );
+        }
+
+
+
+        /* NECK */
+
+        .neck {
+
+            position: absolute;
+
+            left: 52px;
+            top: 84px;
+
+            width: 23px;
+            height: 17px;
+
+            background:
+                #efb995;
+
+            z-index: 2;
+        }
+
+
+
+        /* BODY */
+
+        .jazila-body {
+
+            position: absolute;
+
+            left: 27px;
+            top: 92px;
+
+            width: 70px;
+            height: 75px;
+
+            border-radius:
+                22px 22px 13px 13px;
+
+            background:
+                #168aad;
+
+            z-index: 3;
+
+            box-shadow:
+                inset 0 -8px 0
+                rgba(0,0,0,.08);
+        }
+
+
+
+        /* SHIRT */
+
+        .shirt {
+
+            position: absolute;
+
+            left: 15px;
+            top: 16px;
+
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.15);
+
+            color: white;
+
+            font-size: 11px;
+            font-weight: 950;
+        }
+
+
+        /* COLLAR */
+
+        .collar {
+
+            position: absolute;
+
+            left: 25px;
+            top: -2px;
+
+            width: 20px;
+            height: 13px;
+
+            background:
+                #d9f1eb;
+
+            clip-path:
+                polygon(
+                    0 0,
+                    100% 0,
+                    50% 100%
+                );
+        }
+
+
+
+        /* ARMS */
+
+        .arm {
+
+            position: absolute;
+
+            top: 13px;
+
+            width: 18px;
+            height: 54px;
+
+            border-radius: 15px;
+
+            background:
+                #168aad;
+        }
+
+
+        .arm-left {
+
+            left: -11px;
+
+            transform:
+                rotate(12deg);
+        }
+
+
+        .arm-right {
+
+            right: -11px;
+
+            transform:
+                rotate(-15deg);
+        }
+
+
+
+        /* HANDS */
+
+        .hand {
+
+            position: absolute;
+
+            z-index: 5;
+
+            width: 18px;
+            height: 18px;
+
+            border-radius: 50%;
+
+            background:
+                #f1bb98;
+        }
+
+
+        .hand-left {
+
+            left: 9px;
+            top: 140px;
+        }
+
+
+        .hand-right {
+
+            right: 9px;
+            top: 138px;
+        }
+
+
+
+        /* LEGS */
+
+        .legs {
+
+            position: absolute;
+
+            left: 39px;
+            top: 164px;
+
+            display: flex;
+
+            gap: 9px;
+
+            z-index: 2;
+        }
+
+
+        .leg {
+
+            position: relative;
+
+            width: 23px;
+            height: 49px;
+
+            border-radius:
+                0 0 11px 11px;
+
+            background:
+                #334e68;
+        }
+
+
+
+        /* SHOES */
+
+        .shoe {
+
+            position: absolute;
+
+            bottom: -7px;
+            left: -4px;
+
+            width: 32px;
+            height: 15px;
+
+            border-radius:
+                12px 12px 7px 7px;
+
+            background:
+                #24323c;
+        }
+
+
+
+        /* CHARACTER NAME */
+
+        .character-name {
+
+            position: absolute;
+
+            left: 50%;
+            bottom: -3px;
+
+            transform:
+                translateX(-50%);
+
+            display: flex;
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 7px 12px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.92);
+
+            box-shadow:
+                0 7px 20px
+                rgba(33,76,61,.12);
+
+            white-space: nowrap;
+        }
+
+
+        .character-name > span {
+
+            width: 24px;
+            height: 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background:
+                #168aad;
+
+            color: white;
+
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+
+        .character-name strong {
+
+            display: block;
+
+            color: #244f43;
+
+            font-size: 11px;
+        }
+
+
+        .character-name small {
+
+            display: block;
+
+            margin-top: 1px;
+
+            color: #78958c;
+
+            font-size: 8px;
+        }
+
+
+
+        /* =====================================================
+           DIALOG
+        ===================================================== */
+
+        .dialog-box {
+
+            position: relative;
+
+            width:
+                min(560px, 100%);
+
+            padding:
+                17px 20px 14px;
+
+            border-radius: 21px;
+
+            background:
+                rgba(255,255,255,.94);
+
+            border:
+                2px solid
+                rgba(255,255,255,.96);
+
+            box-shadow:
+                0 18px 45px
+                rgba(32,79,62,.16);
+
+            backdrop-filter:
+                blur(12px);
+        }
+
+
+        /* dialog tail */
+
+        .dialog-box::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: -11px;
+            bottom: 43px;
+
+            width: 21px;
+            height: 21px;
+
+            background:
+                white;
+
+            transform:
+                rotate(45deg);
+
+            border-left:
+                2px solid
+                rgba(255,255,255,.9);
+
+            border-bottom:
+                2px solid
+                rgba(255,255,255,.9);
+        }
+
+
+
+        /* DIALOG TOP */
+
+        .dialog-top {
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            padding-bottom: 11px;
+
+            border-bottom:
+                1px solid #e8f0ed;
+        }
+
+
+        .dialog-avatar {
+
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168aad,
+                    #52b788
+                );
+
+            color: white;
+
+            font-weight: 900;
+        }
+
+
+        .dialog-person strong {
+
+            display: block;
+
+            color: #214d40;
+
+            font-size: 13px;
+        }
+
+
+        .dialog-person span {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: #8aa49c;
+
+            font-size: 9px;
+        }
+
+
+        .dialog-status {
+
+            margin-left: auto;
+
+            color: #52b788;
+
+            font-size: 8px;
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+
+
+        /* CONTENT */
+
+        .dialog-content {
+
+            padding:
+                13px 3px 7px;
+        }
+
+
+        .dialog-content p {
+
+            margin-bottom: 7px;
+
+            color: #3f6258;
+
+            font-size: 13px;
+
+            line-height: 1.55;
+        }
+
+
+        .dialog-content p:first-child {
+
+            color: #1d4c3f;
+
+            font-size: 15px;
+
+            font-weight: 850;
+        }
+
+
+
+        /* BOTTOM */
+
+        .dialog-bottom {
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding-top: 7px;
+        }
+
+
+        .dialog-bottom > span:first-child {
+
+            color: #a3b8b2;
+
+            font-size: 8px;
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+        }
+
+
+        .dialog-hint {
+
+            color: #168aad;
+
+            font-size: 9px;
+            font-weight: 800;
+
+            animation:
+                hintBlink 1.5s ease-in-out infinite;
+        }
+
+
+        .dialog-hint b {
+
+            margin-left: 4px;
+        }
+
+
+
+        /* =====================================================
+           CLUE
+        ===================================================== */
+
+        .story-clue {
+
+            display: flex;
+            align-items: center;
+
+            width: fit-content;
+
+            margin-top: 13px;
+
+            padding:
+                9px 13px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255,255,255,.72);
+
+            border:
+                1px solid
+                rgba(255,255,255,.9);
+
+            box-shadow:
+                0 7px 20px
+                rgba(33,78,62,.08);
+
+            animation:
+                fadeUp .7s ease .35s both;
+        }
+
+
+        .clue-icon {
+
+            width: 35px;
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                #fff2cf;
+
+            font-size: 18px;
+        }
+
+
+        .clue-text {
+
+            margin-left: 10px;
+        }
+
+
+        .clue-text span {
+
+            display: block;
+
+            color: #b27b18;
+
+            font-size: 8px;
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+
+        .clue-text strong {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: #496a5f;
+
+            font-size: 11px;
+        }
+
+
+        .clue-check {
+
+            margin-left: 18px;
+
+            width: 22px;
+            height: 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                #52b788;
+
+            color: white;
+
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+
+
+        /* =====================================================
+           MISSION BOX
+        ===================================================== */
+
+        .mission-box {
+
+            position: absolute;
+
+            right: 0;
+            bottom: 32px;
+
+            width: 390px;
+
+            padding: 18px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,.95);
+
+            border:
+                2px solid
+                rgba(255,255,255,.98);
+
+            box-shadow:
+                0 20px 50px
+                rgba(32,79,62,.18);
+
+            animation:
+                missionAppear .8s ease .45s both;
+        }
+
+
+
+        /* MISSION HEADER */
+
+        .mission-header {
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            padding-bottom: 12px;
+
+            border-bottom:
+                1px solid #e6efeb;
+        }
+
+
+        .mission-number {
+
+            width: 39px;
+            height: 39px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168aad,
+                    #52b788
+                );
+
+            color: white;
+
+            font-size: 13px;
+            font-weight: 950;
+        }
+
+
+        .mission-header span {
+
+            display: block;
+
+            color: #32695a;
+
+            font-size: 10px;
+            font-weight: 950;
+
+            letter-spacing: 1px;
+        }
+
+
+        .mission-header small {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: #9aafa9;
+
+            font-size: 8px;
+            font-weight: 700;
+        }
+
+
+        .mission-level {
+
+            margin-left: auto;
+
+            color: #9cb1aa;
+
+            font-size: 9px;
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+
+
+        /* MISSION BODY */
+
+        .mission-body h2 {
+
+            margin:
+                14px 0 6px;
+
+            color: #214c40;
+
+            font-size: 20px;
+
+            line-height: 1.2;
+
+            letter-spacing: -.5px;
+        }
+
+
+        .mission-body p {
+
+            color: #668078;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+        }
+
+
+
+        /* =====================================================
+           MAIN GAME BUTTON
+        ===================================================== */
+
+        .story-button {
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            width: 100%;
+
+            margin-top: 15px;
+
+            padding:
+                10px 11px;
+
+            border-radius: 16px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffb703,
+                    #fb8500
+                );
+
+            border:
+                3px solid
+                rgba(255,255,255,.88);
+
+            box-shadow:
+                0 7px 0 #c96800,
+                0 12px 22px
+                rgba(251,133,0,.25);
+
+            overflow: hidden;
+
+            transition:
+                transform .18s ease,
+                box-shadow .18s ease,
+                filter .18s ease;
+        }
+
+
+
+        /* SHINE */
+
+        .story-button::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: -40%;
+            left: -100%;
+
+            width: 55%;
+            height: 180%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.38),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition:
+                left .55s ease;
+        }
+
+
+        .story-button:hover::before {
+            left: 140%;
+        }
+
+
+
+        /* BUTTON ICON */
+
+        .button-icon {
+
+            width: 43px;
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.2);
+
+            font-size: 20px;
+        }
+
+
+
+        /* BUTTON TEXT */
+
+        .button-text {
+
+            display: flex;
+            flex-direction: column;
+
+            margin-left: 11px;
+        }
+
+
+        .button-text strong {
+
+            font-size: 14px;
+
+            letter-spacing: .7px;
+        }
+
+
+        .button-text small {
+
+            margin-top: 3px;
+
+            font-size: 9px;
+
+            opacity: .88;
+        }
+
+
+
+        /* ARROW */
+
+        .button-arrow {
+
+            margin-left: auto;
+
+            width: 35px;
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,.2);
+
+            font-size: 21px;
+            font-weight: 900;
+
+            transition:
+                transform .2s ease;
+        }
+
+
+
+        /* HOVER */
+
+        .story-button:hover {
+
+            transform:
+                translateY(-4px)
+                scale(1.015);
+
+            box-shadow:
+                0 11px 0 #c96800,
+                0 18px 30px
+                rgba(251,133,0,.34);
+
+            filter:
+                brightness(1.06);
+        }
+
+
+        .story-button:hover .button-arrow {
+
+            transform:
+                translateX(6px);
+        }
+
+
+
+        /* ACTIVE */
+
+        .story-button:active {
+
+            transform:
+                translateY(4px);
+
+            box-shadow:
+                0 3px 0 #c96800,
+                0 7px 13px
+                rgba(251,133,0,.2);
+        }
+
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .story-footer {
+
+            position: fixed;
+
+            z-index: 30;
+
+            left: 42px;
+            right: 42px;
+            bottom: 13px;
+
+            display: flex;
+            justify-content: space-between;
+
+            color:
+                rgba(37,83,68,.58);
+
+            font-size: 9px;
+            font-weight: 700;
+
+            pointer-events: none;
+        }
+
+
+
+        /* =====================================================
+           ANIMATIONS
+        ===================================================== */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        @keyframes missionAppear {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(25px)
+                    scale(.97);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        @keyframes sunFloat {
+
+            0%,100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-7px);
+            }
+        }
+
+
+        @keyframes cloudMove {
+
+            0% {
+                transform:
+                    translateX(-15px);
+            }
+
+            50% {
+                transform:
+                    translateX(20px);
+            }
+
+            100% {
+                transform:
+                    translateX(-15px);
+            }
+        }
+
+
+        @keyframes treeSway {
+
+            0%,100% {
+                transform:
+                    rotate(0deg);
+            }
+
+            50% {
+                transform:
+                    rotate(1deg);
+            }
+        }
+
+
+        @keyframes smokeRise {
+
+            0% {
+                opacity: 0;
+                transform:
+                    translate(0,10px)
+                    scale(.6);
+            }
+
+            20% {
+                opacity: .65;
+            }
+
+            100% {
+                opacity: 0;
+                transform:
+                    translate(-25px,-100px)
+                    scale(1.8);
+            }
+        }
+
+
+        @keyframes firePulse {
+
+            from {
+                transform:
+                    scale(.92);
+            }
+
+            to {
+                transform:
+                    scale(1.08);
+            }
+        }
+
+
+        @keyframes characterFloat {
+
+            0%,100% {
+                transform:
+                    translateX(-50%)
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateX(-50%)
+                    translateY(-5px);
+            }
+        }
+
+
+        @keyframes dotPulse {
+
+            0%,100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .4;
+            }
+        }
+
+
+        @keyframes hintBlink {
+
+            0%,100% {
+                opacity: .5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .story-header {
+                padding: 0 22px;
+            }
+
+
+            .story-content {
+
+                width:
+                    min(680px, calc(100% - 40px));
+
+                padding-top: 35px;
+            }
+
+
+            .story-content h1 {
+                font-size: 39px;
+            }
+
+
+            .jazila-scene {
+                gap: 12px;
+            }
+
+
+            .jazila-wrapper {
+
+                transform:
+                    scale(.85);
+
+                transform-origin:
+                    bottom left;
+
+                margin-right: -22px;
+            }
+
+
+            .mission-box {
+
+                position: relative;
+
+                right: auto;
+                bottom: auto;
+
+                width: 100%;
+
+                margin-top: 18px;
+            }
+
+
+            .story-footer {
+                display: none;
+            }
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 650px) {
+
+            .story-header {
+
+                height: 64px;
+
+                padding: 0 14px;
+            }
+
+
+            .story-brand {
+
+                font-size: 13px;
+            }
+
+
+            .brand-icon {
+                font-size: 20px;
+            }
+
+
+            .story-progress {
+                display: none;
+            }
+
+
+            .story-collection {
+
+                padding:
+                    8px 10px;
+
+                font-size: 10px;
+            }
+
+
+            .story-main {
+                padding-top: 64px;
+            }
+
+
+            .story-background {
+                inset: 64px 0 0;
+            }
+
+
+            .story-vignette {
+                inset: 64px 0 0;
+            }
+
+
+            .story-content {
+
+                width:
+                    calc(100% - 28px);
+
+                padding:
+                    27px 0 30px;
+            }
+
+
+            .story-content h1 {
+
+                font-size: 31px;
+
+                letter-spacing:
+                    -1.3px;
+            }
+
+
+            .story-subtitle {
+
+                font-size: 12px;
+
+                line-height: 1.55;
+            }
+
+
+            .jazila-scene {
+
+                display: block;
+
+                margin-top: 14px;
+            }
+
+
+            .jazila-wrapper {
+
+                margin:
+                    0 auto -5px;
+
+                transform:
+                    scale(.78);
+
+                transform-origin:
+                    bottom center;
+            }
+
+
+            .dialog-box {
+
+                width: 100%;
+
+                padding:
+                    15px 15px 12px;
+
+                border-radius: 17px;
+            }
+
+
+            .dialog-box::before {
+                display: none;
+            }
+
+
+            .dialog-content p {
+                font-size: 11px;
+            }
+
+
+            .dialog-content p:first-child {
+                font-size: 13px;
+            }
+
+
+            .story-clue {
+                margin-top: 11px;
+            }
+
+
+            .mission-box {
+
+                padding: 14px;
+
+                border-radius: 18px;
+            }
+
+
+            .mission-body h2 {
+                font-size: 17px;
+            }
+
+
+            .mission-body p {
+                font-size: 10px;
+            }
+
+
+            .story-button {
+
+                min-height: 61px;
+
+                margin-top: 13px;
+            }
+
+
+            .button-icon {
+
+                width: 38px;
+                height: 38px;
+
+                font-size: 18px;
+            }
+
+
+            .button-text strong {
+                font-size: 12px;
+            }
+
+
+            .button-text small {
+                font-size: 8px;
+            }
+
+
+            .button-arrow {
+
+                width: 31px;
+                height: 31px;
+
+                font-size: 18px;
+            }
+
+
+            .tree-a {
+                font-size: 80px;
+            }
+
+
+            .tree-c {
+                font-size: 85px;
+            }
+
+
+            .story-sun {
+
+                width: 65px;
+                height: 65px;
+
+                right: 7%;
+            }
+
+
+            .distant-fire {
+
+                right: 20%;
+                bottom: 22%;
+
+                font-size: 27px;
+            }
+        }
+
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 400px) {
+
+            .story-content h1 {
+                font-size: 27px;
+            }
+
+
+            .story-label {
+                font-size: 8px;
+            }
+
+
+            .dialog-status {
+                display: none;
+            }
+
+
+            .mission-header span {
+                font-size: 9px;
+            }
+
+
+            .mission-level {
+                font-size: 8px;
+            }
+        }
+
+    </style>
 
 </head>
 
 
-<body class="story-page">
+
+<body>
 
 
-<!-- ================= HEADER ================= -->
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
 
-<header class="game-header story-header">
-
-    <a href="index.html" class="brand">
-        🌲 FIRE <span>DETECTIVE</span>
-    </a>
-
-    <div class="story-progress">
-        <span class="active"></span>
-        <span></span>
-        <span></span>
-    </div>
-
-    <a href="koleksi.html" class="nav-link">
-        🏆 Koleksi
-    </a>
-
-</header>
+    <header class="story-header">
 
 
+        <a href="index.html"
+           class="story-brand">
 
-<!-- ================= STORY ================= -->
+            <span class="brand-icon">
+                🌲
+            </span>
 
-<main class="story-main">
+            <span>
+                FIRE <b>DETECTIVE</b>
+            </span>
 
-
-    <!-- BACKGROUND FOREST -->
-
-    <div class="story-forest">
-
-        <div class="story-sun"></div>
-
-        <div class="story-cloud cloud-a">☁️</div>
-        <div class="story-cloud cloud-b">☁️</div>
-
-        <div class="hill hill-back"></div>
-        <div class="hill hill-front"></div>
-
-
-        <div class="forest-tree tree-a">🌲</div>
-        <div class="forest-tree tree-b">🌲</div>
-        <div class="forest-tree tree-c">🌳</div>
-        <div class="forest-tree tree-d">🌲</div>
-        <div class="forest-tree tree-e">🌲</div>
-
-
-        <div class="smoke smoke-one"></div>
-        <div class="smoke smoke-two"></div>
-        <div class="smoke smoke-three"></div>
-
-
-        <div class="small-fire">
-            🔥
-        </div>
-
-    </div>
+        </a>
 
 
 
-    <!-- STORY CONTENT -->
+        <div class="story-progress">
 
-    <section class="story-content">
+            <span class="progress-label">
+                PROLOG
+            </span>
 
+            <div class="progress-dots">
 
-        <div class="story-label">
-            PROLOG · MISI DIMULAI
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
         </div>
 
 
-        <h1>
-            Ada sesuatu yang<br>
-            <span>tidak beres di hutan.</span>
-        </h1>
 
+        <a href="koleksi.html"
+           class="story-collection">
 
-        <p class="story-subtitle">
+            🏆 Koleksi
 
-            Sore itu, Jazila sedang melakukan perjalanan
-            ketika ia melihat kepulan asap dari balik
-            pepohonan.
+        </a>
 
-        </p>
+    </header>
 
 
 
-        <!-- JAZILA -->
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
 
-        <div class="jazila-scene">
-
-
-            <div class="jazila-character">
-
-                <div class="character-shadow"></div>
+    <main class="story-main">
 
 
-                <!-- kepala -->
+        <!-- =================================================
+             BACKGROUND
+        ================================================== -->
 
-                <div class="jazila-head">
-
-                    <div class="hair-back"></div>
-
-                    <div class="face">
-
-                        <div class="eye eye-left"></div>
-                        <div class="eye eye-right"></div>
-
-                        <div class="nose"></div>
-
-                        <div class="smile"></div>
-
-                    </div>
-
-                    <div class="hair-front"></div>
-
-                </div>
+        <div class="story-background">
 
 
-                <!-- tubuh -->
-
-                <div class="jazila-body">
-
-                    <div class="shirt">
-                        <span>FD</span>
-                    </div>
-
-                    <div class="arm arm-left"></div>
-                    <div class="arm arm-right"></div>
-
-                </div>
+            <div class="story-sun"></div>
 
 
-                <!-- tas -->
-
-                <div class="backpack">
-                    🎒
-                </div>
+            <div class="story-cloud cloud-a">
+                ☁️
+            </div>
 
 
-                <!-- kaki -->
+            <div class="story-cloud cloud-b">
+                ☁️
+            </div>
 
-                <div class="legs">
 
-                    <div class="leg"></div>
-                    <div class="leg"></div>
+            <div class="story-mountain mountain-back"></div>
 
-                </div>
 
+            <div class="story-mountain mountain-front"></div>
+
+
+            <div class="forest-ground"></div>
+
+
+
+            <!-- TREES -->
+
+            <div class="forest-tree tree-a">
+                🌲
+            </div>
+
+            <div class="forest-tree tree-b">
+                🌲
+            </div>
+
+            <div class="forest-tree tree-c">
+                🌳
+            </div>
+
+            <div class="forest-tree tree-d">
+                🌲
+            </div>
+
+            <div class="forest-tree tree-e">
+                🌲
+            </div>
+
+            <div class="forest-tree tree-f">
+                🌲
             </div>
 
 
 
-            <!-- DIALOG -->
+            <!-- SMOKE -->
 
-            <div class="dialog-box">
+            <div class="smoke smoke-one"></div>
 
+            <div class="smoke smoke-two"></div>
 
-                <div class="dialog-name">
-
-                    <span class="dialog-avatar">
-                        J
-                    </span>
-
-                    <div>
-                        <strong>Jazila</strong>
-                        <small>Teman Detektifmu</small>
-                    </div>
-
-                </div>
-
-
-                <div class="dialog-content">
-
-                    <p>
-                        “Eh... kamu lihat itu?”
-                    </p>
-
-                    <p>
-                        “Ada asap dari balik pepohonan.
-                        Sepertinya ada sesuatu yang terjadi
-                        di dalam hutan.”
-                    </p>
-
-                </div>
-
-
-                <div class="dialog-next">
-                    klik untuk lanjut
-                    <span>▼</span>
-                </div>
-
-
-            </div>
-
-
-        </div>
+            <div class="smoke smoke-three"></div>
 
 
 
-        <!-- CLUE -->
+            <!-- FIRE -->
 
-        <div class="story-clue">
-
-            <div class="clue-icon">
+            <div class="distant-fire">
                 🔥
             </div>
 
-            <div>
-
-                <span>
-                    PETUNJUK DITEMUKAN
-                </span>
-
-                <strong>
-                    Asap · Api · Hutan
-                </strong>
-
-            </div>
-
         </div>
 
 
 
-        <!-- MISSION -->
+        <!-- VIGNETTE -->
 
-        <div class="mission-box">
+        <div class="story-vignette"></div>
 
-            <div class="mission-top">
 
-                <span>
-                    🔎 MISI PERTAMA
-                </span>
 
-                <span>
-                    01 / 04
-                </span>
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
+
+        <section class="story-content">
+
+
+            <!-- LABEL -->
+
+            <div class="story-label">
+
+                <span class="label-dot"></span>
+
+                PROLOG · MISI DIMULAI
 
             </div>
 
 
-            <h2>
-                Tapi dari mana api itu berasal?
-            </h2>
+
+            <!-- TITLE -->
+
+            <h1>
+
+                Ada sesuatu yang
+
+                <span>
+                    tidak beres di hutan.
+                </span>
+
+            </h1>
 
 
-            <p>
 
-                Sebelum mencari jawabannya, kamu harus
-                mengenali berbagai faktor yang dapat
-                berkaitan dengan terjadinya kebakaran
-                hutan dan lahan.
+            <!-- SUBTITLE -->
+
+            <p class="story-subtitle">
+
+                Sore itu, hutan masih terlihat tenang.
+                Namun sebuah kepulan asap membuat
+                Jazila berhenti sejenak.
 
             </p>
 
 
-            <a href="belajar.html"
-               class="story-button">
 
-                Pelajari Petunjuk
-                <span>→</span>
+            <!-- =================================================
+                 JAZILA + DIALOG
+            ================================================== -->
 
-            </a>
-
-        </div>
+            <div class="jazila-scene">
 
 
-    </section>
+                <!-- JAZILA -->
+
+                <div class="jazila-wrapper">
 
 
-</main>
+                    <div class="character-glow"></div>
+
+
+                    <div class="jazila-character">
+
+
+                        <div class="character-shadow"></div>
+
+
+                        <!-- TAS -->
+
+                        <div class="backpack">
+                            🎒
+                        </div>
+
+
+                        <!-- RAMBUT BELAKANG -->
+
+                        <div class="hair-back"></div>
+
+
+                        <!-- KEPALA -->
+
+                        <div class="jazila-head">
+
+
+                            <div class="face">
+
+
+                                <div class="ear ear-left"></div>
+                                <div class="ear ear-right"></div>
+
+
+                                <div class="eye eye-left"></div>
+                                <div class="eye eye-right"></div>
+
+
+                                <div class="eyebrow eyebrow-left"></div>
+                                <div class="eyebrow eyebrow-right"></div>
+
+
+                                <div class="nose"></div>
+
+
+                                <div class="smile"></div>
+
+
+                            </div>
+
+
+                            <div class="hair-front"></div>
+
+
+                        </div>
 
 
 
-<!-- ================= FOOTER ================= -->
+                        <!-- LEHER -->
 
-<footer class="story-footer">
+                        <div class="neck"></div>
 
-    <span>
-        🔎 FIRE DETECTIVE
-    </span>
 
-    <span>
-        Petualangan dimulai dari satu petunjuk.
-    </span>
 
-</footer>
+                        <!-- BADAN -->
+
+                        <div class="jazila-body">
+
+
+                            <div class="shirt">
+                                <span>FD</span>
+                            </div>
+
+
+                            <div class="collar"></div>
+
+
+                            <div class="arm arm-left"></div>
+                            <div class="arm arm-right"></div>
+
+
+                        </div>
+
+
+
+                        <!-- TANGAN -->
+
+                        <div class="hand hand-left"></div>
+                        <div class="hand hand-right"></div>
+
+
+
+                        <!-- KAKI -->
+
+                        <div class="legs">
+
+
+                            <div class="leg leg-left">
+
+                                <div class="shoe"></div>
+
+                            </div>
+
+
+                            <div class="leg leg-right">
+
+                                <div class="shoe"></div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- NAMA -->
+
+                    <div class="character-name">
+
+
+                        <span>
+                            J
+                        </span>
+
+
+                        <div>
+
+                            <strong>
+                                Jazila
+                            </strong>
+
+                            <small>
+                                Fire Detective
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     DIALOG
+                ================================================== -->
+
+                <div class="dialog-box">
+
+
+                    <div class="dialog-top">
+
+
+                        <div class="dialog-avatar">
+                            J
+                        </div>
+
+
+                        <div class="dialog-person">
+
+                            <strong>
+                                Jazila
+                            </strong>
+
+                            <span>
+                                Teman Detektifmu
+                            </span>
+
+                        </div>
+
+
+                        <div class="dialog-status">
+                            ● ONLINE
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="dialog-content">
+
+
+                        <p>
+                            “Eh... kamu lihat itu?”
+                        </p>
+
+
+                        <p>
+                            “Ada asap dari balik pepohonan.
+                            Sepertinya ada sesuatu yang terjadi
+                            di dalam hutan.”
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="dialog-bottom">
+
+
+                        <span>
+                            JAZILA
+                        </span>
+
+
+                        <span class="dialog-hint">
+
+                            Klik untuk melanjutkan
+
+                            <b>
+                                ▼
+                            </b>
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CLUE
+            ================================================== -->
+
+            <div class="story-clue">
+
+
+                <div class="clue-icon">
+                    🔎
+                </div>
+
+
+                <div class="clue-text">
+
+
+                    <span>
+                        PETUNJUK DITEMUKAN
+                    </span>
+
+
+                    <strong>
+                        Asap · Api · Hutan
+                    </strong>
+
+
+                </div>
+
+
+                <div class="clue-check">
+                    ✓
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MISSION
+            ================================================== -->
+
+            <div class="mission-box">
+
+
+                <div class="mission-header">
+
+
+                    <div class="mission-number">
+                        01
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            MISI PERTAMA
+                        </span>
+
+                        <small>
+                            FIRE DETECTIVE
+                        </small>
+
+                    </div>
+
+
+                    <div class="mission-level">
+                        01 / 04
+                    </div>
+
+                </div>
+
+
+
+                <div class="mission-body">
+
+
+                    <h2>
+                        Tapi dari mana api itu berasal?
+                    </h2>
+
+
+                    <p>
+                        Sebelum mencari jawabannya,
+                        kamu perlu mengenali berbagai
+                        faktor yang berkaitan dengan
+                        kebakaran hutan dan lahan.
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     BUTTON
+                ================================================== -->
+
+                <a href="belajar.html"
+                   class="story-button">
+
+
+                    <span class="button-icon">
+                        🔎
+                    </span>
+
+
+                    <span class="button-text">
+
+                        <strong>
+                            MULAI MISI
+                        </strong>
+
+                        <small>
+                            Kenali petunjuk pertama
+                        </small>
+
+                    </span>
+
+
+                    <span class="button-arrow">
+                        →
+                    </span>
+
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer class="story-footer">
+
+
+        <span>
+            🔎 FIRE DETECTIVE
+        </span>
+
+
+        <span>
+            Petualangan dimulai dari satu petunjuk.
+        </span>
+
+
+    </footer>
 
 
 </body>
