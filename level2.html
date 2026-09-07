@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Level 2 | Kelompokkan Faktor</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<header class="game-header">
+
+    <a href="index.html" class="brand">
+        🌲 FIRE <span>DETECTIVE</span>
+    </a>
+
+    <div class="level-title">
+        LEVEL 2 · KELOMPOKKAN
+    </div>
+
+    <div class="score">
+        ⭐ <span id="score">0</span>
+    </div>
+
+</header>
+
+
+<main class="game-page">
+
+    <div class="level-intro">
+
+        <span class="level-badge">
+            🧩 MISI KEDUA
+        </span>
+
+        <h1>
+            Masukkan kartu ke tempat yang tepat!
+        </h1>
+
+        <p>
+
+            Tentukan apakah kartu termasuk faktor
+            manusia, kondisi lingkungan, atau bahan bakar.
+
+        </p>
+
+    </div>
+
+
+    <div id="sortCard"
+         class="sort-card">
+    </div>
+
+
+    <div class="category-grid">
+
+        <button class="category human"
+                data-cat="human">
+
+            <span>👤</span>
+
+            <strong>
+                Faktor Manusia
+            </strong>
+
+            <small>
+                Aktivitas atau sumber api dari manusia
+            </small>
+
+        </button>
+
+
+        <button class="category environment"
+                data-cat="environment">
+
+            <span>🌦️</span>
+
+            <strong>
+                Kondisi Lingkungan
+            </strong>
+
+            <small>
+                Cuaca dan kondisi sekitar
+            </small>
+
+        </button>
+
+
+        <button class="category fuel"
+                data-cat="fuel">
+
+            <span>🌿</span>
+
+            <strong>
+                Bahan Bakar
+            </strong>
+
+            <small>
+                Material yang dapat terbakar
+            </small>
+
+        </button>
+
+    </div>
+
+
+    <div id="sortFeedback"
+         class="feedback">
+    </div>
+
+</main>
+
+
+<script src="js/data.js"></script>
+
+<script src="js/game.js"></script>
+
+<script>
+
+initLevel2();
+
+</script>
+
+</body>
+</html>
