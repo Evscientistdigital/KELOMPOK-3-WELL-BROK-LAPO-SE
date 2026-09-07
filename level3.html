@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Level 3 | Api Menyebar</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<header class="game-header">
+
+    <a href="index.html" class="brand">
+        🌲 FIRE <span>DETECTIVE</span>
+    </a>
+
+    <div class="level-title">
+        LEVEL 3 · API MENYEBAR
+    </div>
+
+    <div class="score">
+        ⭐ <span id="score">0</span>
+    </div>
+
+</header>
+
+
+<main class="game-page">
+
+    <div class="level-intro">
+
+        <span class="level-badge">
+            🌬️ MISI SIMULASI
+        </span>
+
+        <h1>
+            Bagaimana api bisa lebih mudah menyebar?
+        </h1>
+
+        <p>
+
+            Pilih kondisi yang paling mendukung
+            penyebaran api pada skenario berikut.
+
+        </p>
+
+    </div>
+
+
+    <section class="scenario">
+
+        <div class="scenario-art">
+
+            🌲 🌿 🔥 🌿 🌲 💨
+
+        </div>
+
+
+        <div>
+
+            <h2>
+                Hari sangat kering
+            </h2>
+
+            <p>
+
+                Vegetasi di sekitar area terlihat
+                kering dan angin bertiup cukup kencang.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <div id="choices"
+         class="choice-grid">
+    </div>
+
+
+    <div id="simFeedback"
+         class="feedback">
+    </div>
+
+
+    <a id="simNext"
+       href="level4.html"
+       class="btn primary center hidden">
+
+        Lanjut Level 4 →
+
+    </a>
+
+</main>
+
+
+<script src="js/data.js"></script>
+
+<script src="js/game.js"></script>
+
+<script>
+
+initLevel3();
+
+</script>
+
+</body>
+</html>
