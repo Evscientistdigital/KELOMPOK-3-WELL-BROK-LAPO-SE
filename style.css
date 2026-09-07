@@ -1459,3 +1459,1022 @@ button {
     }
 
 }
+/* =====================================================
+   FIRE DETECTIVE
+   STORY / PROLOG PAGE
+===================================================== */
+
+.story-page {
+    min-height: 100vh;
+    background:
+        linear-gradient(
+            180deg,
+            #dff3ff 0%,
+            #edf9ff 42%,
+            #d9efd8 100%
+        );
+    overflow-x: hidden;
+}
+
+
+/* ================= HEADER ================= */
+
+.story-header {
+    position: relative;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+}
+
+
+.story-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.story-progress span {
+    width: 32px;
+    height: 5px;
+    border-radius: 20px;
+    background: #d8e3e8;
+}
+
+
+.story-progress span.active {
+    width: 55px;
+    background: #2f7d5b;
+}
+
+
+
+/* ================= MAIN ================= */
+
+.story-main {
+    position: relative;
+    min-height: calc(100vh - 70px);
+    overflow: hidden;
+}
+
+
+/* ================= FOREST ================= */
+
+.story-forest {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+
+.story-sun {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #ffd76a;
+    right: 13%;
+    top: 8%;
+    box-shadow:
+        0 0 50px rgba(255, 215, 106, 0.45);
+}
+
+
+.story-cloud {
+    position: absolute;
+    font-size: 55px;
+    opacity: 0.65;
+}
+
+
+.cloud-a {
+    top: 11%;
+    left: 12%;
+}
+
+
+.cloud-b {
+    top: 18%;
+    left: 42%;
+    transform: scale(0.7);
+}
+
+
+/* bukit */
+
+.hill {
+    position: absolute;
+    bottom: 0;
+    border-radius: 50% 50% 0 0;
+}
+
+
+.hill-back {
+    width: 100%;
+    height: 280px;
+    left: -15%;
+    bottom: -140px;
+    background: #a7d29d;
+}
+
+
+.hill-front {
+    width: 120%;
+    height: 220px;
+    left: -10%;
+    bottom: -125px;
+    background: #78ad78;
+}
+
+
+
+/* pohon */
+
+.forest-tree {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0.72;
+    filter: drop-shadow(0 8px 5px rgba(0,0,0,0.08));
+}
+
+
+.tree-a {
+    left: 2%;
+    bottom: 8%;
+    transform: scale(1.3);
+}
+
+
+.tree-b {
+    left: 16%;
+    bottom: 13%;
+}
+
+
+.tree-c {
+    right: 4%;
+    bottom: 7%;
+    transform: scale(1.35);
+}
+
+
+.tree-d {
+    right: 18%;
+    bottom: 14%;
+}
+
+
+.tree-e {
+    right: 29%;
+    bottom: 10%;
+    transform: scale(0.8);
+}
+
+
+/* asap */
+
+.smoke {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(90, 95, 92, 0.18);
+    filter: blur(5px);
+}
+
+
+.smoke-one {
+    right: 28%;
+    bottom: 27%;
+}
+
+
+.smoke-two {
+    right: 26%;
+    bottom: 34%;
+    transform: scale(1.3);
+}
+
+
+.smoke-three {
+    right: 23%;
+    bottom: 43%;
+    transform: scale(0.8);
+}
+
+
+.small-fire {
+    position: absolute;
+    right: 25%;
+    bottom: 17%;
+    font-size: 38px;
+    filter: drop-shadow(0 4px 8px rgba(255, 100, 20, 0.3));
+}
+
+
+
+/* ================= STORY CONTENT ================= */
+
+.story-content {
+    position: relative;
+    z-index: 5;
+
+    width: min(1100px, 92%);
+    margin: 0 auto;
+
+    padding:
+        65px
+        0
+        100px;
+}
+
+
+.story-label {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.8);
+
+    color: #2f7d5b;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+
+    box-shadow:
+        0 5px 20px rgba(50,80,60,0.07);
+}
+
+
+.story-content h1 {
+    margin: 18px 0 10px;
+
+    max-width: 700px;
+
+    font-size: clamp(42px, 5vw, 70px);
+
+    line-height: 1.04;
+
+    letter-spacing: -2px;
+
+    color: #18372b;
+}
+
+
+.story-content h1 span {
+    color: #d85d32;
+}
+
+
+.story-subtitle {
+    max-width: 580px;
+
+    margin: 0;
+
+    color: #547066;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+
+/* ================= JAZILA ================= */
+
+.jazila-scene {
+    position: relative;
+
+    display: flex;
+    align-items: flex-end;
+    gap: 30px;
+
+    margin-top: 50px;
+
+    min-height: 270px;
+}
+
+
+.jazila-character {
+    position: relative;
+
+    width: 175px;
+    height: 255px;
+
+    flex-shrink: 0;
+}
+
+
+.character-shadow {
+    position: absolute;
+
+    bottom: 0;
+    left: 20px;
+
+    width: 135px;
+    height: 25px;
+
+    border-radius: 50%;
+
+    background: rgba(32,70,50,0.15);
+
+    filter: blur(5px);
+}
+
+
+
+/* kepala */
+
+.jazila-head {
+    position: absolute;
+
+    width: 86px;
+    height: 95px;
+
+    top: 15px;
+    left: 45px;
+
+    z-index: 5;
+}
+
+
+.hair-back {
+    position: absolute;
+
+    width: 90px;
+    height: 102px;
+
+    border-radius: 48% 48% 45% 45%;
+
+    background: #3a2a27;
+
+    left: -2px;
+    top: -4px;
+}
+
+
+.face {
+    position: absolute;
+
+    width: 70px;
+    height: 78px;
+
+    background: #f3c7a5;
+
+    border-radius:
+        45%
+        45%
+        48%
+        48%;
+
+    left: 8px;
+    top: 13px;
+
+    z-index: 2;
+}
+
+
+.eye {
+    position: absolute;
+
+    width: 7px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #30231f;
+
+    top: 34px;
+}
+
+
+.eye-left {
+    left: 19px;
+}
+
+
+.eye-right {
+    right: 19px;
+}
+
+
+.nose {
+    position: absolute;
+
+    width: 6px;
+    height: 4px;
+
+    border-bottom:
+        1.5px solid #c1876c;
+
+    left: 32px;
+    top: 48px;
+}
+
+
+.smile {
+    position: absolute;
+
+    width: 20px;
+    height: 9px;
+
+    border-bottom:
+        2px solid #a84d51;
+
+    border-radius: 0 0 50% 50%;
+
+    left: 25px;
+    top: 56px;
+}
+
+
+.hair-front {
+    position: absolute;
+
+    width: 78px;
+    height: 35px;
+
+    background: #3a2a27;
+
+    border-radius:
+        55%
+        55%
+        30%
+        15%;
+
+    top: 4px;
+    left: 5px;
+
+    z-index: 4;
+}
+
+
+/* tubuh */
+
+.jazila-body {
+    position: absolute;
+
+    width: 90px;
+    height: 110px;
+
+    left: 42px;
+    top: 105px;
+
+    z-index: 3;
+}
+
+
+.shirt {
+    width: 90px;
+    height: 105px;
+
+    background: #f4f7f2;
+
+    border-radius:
+        25px
+        25px
+        14px
+        14px;
+
+    border:
+        3px solid #dbe8df;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #2f7d5b;
+
+    font-weight: 900;
+}
+
+
+.shirt span {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e7f3eb;
+
+    font-size: 11px;
+}
+
+
+.arm {
+    position: absolute;
+
+    width: 23px;
+    height: 75px;
+
+    background: #f3c7a5;
+
+    border-radius: 20px;
+
+    top: 13px;
+}
+
+
+.arm-left {
+    left: -15px;
+    transform: rotate(12deg);
+}
+
+
+.arm-right {
+    right: -15px;
+    transform: rotate(-22deg);
+}
+
+
+.backpack {
+    position: absolute;
+
+    font-size: 48px;
+
+    left: 105px;
+    top: 112px;
+
+    z-index: 2;
+}
+
+
+.legs {
+    position: absolute;
+
+    display: flex;
+    gap: 10px;
+
+    left: 63px;
+    bottom: 0;
+}
+
+
+.leg {
+    width: 24px;
+    height: 65px;
+
+    background: #315c63;
+
+    border-radius: 12px 12px 8px 8px;
+}
+
+
+
+/* ================= DIALOG ================= */
+
+.dialog-box {
+    position: relative;
+
+    max-width: 590px;
+
+    padding: 22px 25px 18px;
+
+    background: rgba(255,255,255,0.94);
+
+    border:
+        1px solid rgba(45,90,65,0.10);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 18px 50px rgba(35,75,55,0.12);
+}
+
+
+.dialog-box::before {
+    content: "";
+
+    position: absolute;
+
+    left: -12px;
+    bottom: 38px;
+
+    width: 22px;
+    height: 22px;
+
+    background: white;
+
+    transform: rotate(45deg);
+
+    border-left:
+        1px solid rgba(45,90,65,0.06);
+
+    border-bottom:
+        1px solid rgba(45,90,65,0.06);
+}
+
+
+.dialog-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 13px;
+}
+
+
+.dialog-avatar {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e4f1e8;
+
+    color: #2f7d5b;
+
+    font-weight: 900;
+}
+
+
+.dialog-name strong {
+    display: block;
+
+    color: #234e39;
+
+    font-size: 15px;
+}
+
+
+.dialog-name small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #82968d;
+
+    font-size: 11px;
+}
+
+
+.dialog-content p {
+    margin: 6px 0;
+
+    color: #465f55;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+.dialog-next {
+    margin-top: 13px;
+
+    text-align: right;
+
+    color: #98aaa2;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.dialog-next span {
+    display: inline-block;
+
+    margin-left: 4px;
+
+    animation: storyArrow 1.2s infinite;
+}
+
+
+@keyframes storyArrow {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(3px);
+    }
+
+}
+
+
+
+/* ================= CLUE ================= */
+
+.story-clue {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    width: fit-content;
+
+    margin:
+        5px
+        0
+        30px
+        205px;
+
+    padding: 12px 18px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.65);
+
+    border:
+        1px dashed rgba(47,125,91,0.25);
+}
+
+
+.clue-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #fff2df;
+}
+
+
+.story-clue span {
+    display: block;
+
+    color: #9b8c7b;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.story-clue strong {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #405e51;
+
+    font-size: 13px;
+}
+
+
+
+/* ================= MISSION ================= */
+
+.mission-box {
+    width: min(680px, 100%);
+
+    margin-left: auto;
+
+    padding: 25px 28px;
+
+    background:
+        rgba(255,255,255,0.92);
+
+    border-radius: 22px;
+
+    border:
+        1px solid rgba(40,80,60,0.08);
+
+    box-shadow:
+        0 18px 50px rgba(40,80,60,0.10);
+}
+
+
+.mission-top {
+    display: flex;
+    justify-content: space-between;
+
+    color: #6d8a7d;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.mission-box h2 {
+    margin:
+        13px
+        0
+        8px;
+
+    color: #1f4935;
+
+    font-size: 27px;
+}
+
+
+.mission-box p {
+    margin: 0 0 20px;
+
+    color: #647b71;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+.story-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 13px 20px;
+
+    border-radius: 12px;
+
+    background: #2f7d5b;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 8px 20px rgba(47,125,91,0.22);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.story-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(47,125,91,0.28);
+}
+
+
+.story-button span {
+    font-size: 20px;
+}
+
+
+
+/* ================= FOOTER ================= */
+
+.story-footer {
+    position: relative;
+
+    z-index: 10;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding:
+        14px
+        5%;
+
+    background: rgba(255,255,255,0.72);
+
+    color: #789087;
+
+    font-size: 11px;
+}
+
+
+.story-footer span:first-child {
+    color: #356b50;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 800px) {
+
+    .story-content {
+        padding-top: 40px;
+    }
+
+
+    .story-content h1 {
+        font-size: 44px;
+    }
+
+
+    .jazila-scene {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+
+    .jazila-character {
+        transform: scale(0.85);
+        transform-origin: left bottom;
+        margin-bottom: -30px;
+    }
+
+
+    .dialog-box {
+        margin-left: 0;
+    }
+
+
+    .dialog-box::before {
+        left: 55px;
+        bottom: auto;
+        top: -10px;
+
+        border:
+            none;
+
+        background: white;
+    }
+
+
+    .story-clue {
+        margin-left: 0;
+    }
+
+
+    .mission-box {
+        margin-left: 0;
+    }
+
+
+    .story-footer {
+        gap: 8px;
+        flex-direction: column;
+    }
+
+
+    .story-progress {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .story-content {
+        width: 90%;
+    }
+
+
+    .story-content h1 {
+        font-size: 36px;
+
+        letter-spacing: -1px;
+    }
+
+
+    .story-subtitle {
+        font-size: 14px;
+    }
+
+
+    .dialog-box {
+        padding: 18px;
+    }
+
+
+    .mission-box {
+        padding: 20px;
+    }
+
+
+    .mission-box h2 {
+        font-size: 22px;
+    }
+
+
+    .story-sun {
+        width: 80px;
+        height: 80px;
+    }
+
+}
